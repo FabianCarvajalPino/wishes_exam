@@ -1,0 +1,29 @@
+.wrapper{
+    width: 1000px;
+    margin: 0px auto;
+}
+
+label{
+    display: inline-block;
+    width: 110px;
+}
+
+.messages{
+    color: red;
+    margin: 0px auto;
+    text-align: center;
+    outline: 1px solid red;
+    width: 600px;
+}
+
+form{
+    padding: 20px;
+    width: 400px;
+    margin: 10px auto;
+    outline: 1px solid dodgerblue;
+}
+
+table{
+    margin: 0px auto;
+    outline: 1px solid dodgerblue;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/wish_style.css' %}">
+</head>
+<body>
+    <nav class="row justify-content-between navbar navbar-expand-lg navbar-light bg-light">
+        <h1 class="col-4">Bienvenid@, {{request.session.username}}! Estos son tus stats!</h1>
+        <a class="col-2 btn btn-info" href="/wishes">Dashboard</a>
+        <a class="col-2 btn btn-danger" href="/logout">Log out</a>
+    </nav>
+    <div class="data">
+        <h3>El total de deseos cumplidos para todos los usuarios son: {{cumplidos.count}}</h3>
+        <p>Tus deseos cumplidos: {{cumplidos_user.count}}</p>
+        <p>Tus deseos no cumplidos: {{no_cumplidos_user.count}}</p>
+    </div>
+</body>
+</html>

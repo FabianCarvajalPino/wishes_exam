@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/wish_style.css' %}">
+</head>
+<body>
+    <nav class="row justify-content-between navbar navbar-expand-lg navbar-light bg-light">
+        <h1 class="col-4">Bienvenid@, {{request.session.username}}! Pide un deseo!</h1>
+        <a class="col-2 btn btn-danger" href="/logout">Log out</a>
+    </nav>
+    {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/wishes/new" method="POST">
+        {% csrf_token %}
+        <div class="form_group">
+            <label for="wishInput">Deseo:</label>
+            <input type="text" name="wish" id="wishInput" class="form_control" placeholder="Minimo 3 caracteres">
+        </div>
+        <div class="form_group">
+            <label for="descInput">Descripcion:</label>
+            <input type="text" name="description" id="descInput" class="form_control" placeholder="Minimo 3 caracteres">
+        </div>
+        <a class="btn btn-danger" href="/wishes">Cancelar</a>
+        <input class="btn btn-success" type="submit" value="Pedir deseo">
+    </form>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishes log-in / register</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/logreg_style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Bienvenido, ingresa o registrate para pedir un deseo!</h1>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <table class="table">
+            <td>
+                <h2>Registo</h2>
+                <form action="/registration" method="POST">
+                    {% csrf_token %}
+                    <div class="form_group">
+                        <label for="nameInput">Nombre:</label>
+                        <input type="text" class="form_control" id="nameInput" name="first_name" placeholder="min 2 caracteres, solo letras">
+                    </div>
+                    <div class="form_group">
+                        <label for="lastInput">Apellido:</label>
+                        <input type="text" class="form_control" id="lastInput" name="last_name" placeholder="min 2 caracteres, solo letras">
+                    </div>
+                    <div class="form_group">
+                        <label for="emailInput">Email:</label>
+                        <input type="text" class="form_control" id="emailInput" name="email", placeholder="ej: email@dominio.algo">
+                    </div>
+                    <div class="form_group">
+                        <label for="passInput">Contraseña:</label>
+                        <input type="password" class="form_control" id="passInput" name="password" placeholder="min. 8 caracteres" autocomplete="false">
+                    </div>
+                    <div class="form_group">
+                        <label for="rePassInput">Re-Contraseña:</label>
+                        <input type="password" class="form_control" id="rePassInput" name="re_password" placeholder="repetir contraseña">
+                    </div>
+                    <input type="submit" value="Registrar">
+                </form>
+            </td>
+            <td>
+                <h2>Log in</h2>
+                <form action="/login" method="POST">
+                {% csrf_token %}
+                <div class="form_group">
+                    <label for="emailInput">Email:</label>
+                    <input type="text" class="form_control" id="emailInput" name="email", placeholder="ej: email@dominio.algo">
+                </div>
+                <div class="form_group">
+                    <label for="passInput">Contraseña:</label>
+                    <input type="password" class="form_control" id="passInput" name="password" placeholder="min. 8 caracteres">
+                </div>
+                <input type="submit" value="Log-in">
+              </form>
+            </td>
+        </table>
+    </div>
+</body>
+</html>
